@@ -1,12 +1,13 @@
-import { Component,DoCheck,OnInit } from '@angular/core';
+import { Component,DoCheck,OnInit, ViewChild,AfterViewInit, AfterViewChecked } from '@angular/core';
 import { Room, RoomList } from './rooms';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'hinv-rooms',
   templateUrl: './rooms.component.html',
   styleUrls: ['./rooms.component.scss'],
 })
-export class RoomsComponent implements OnInit, DoCheck {
+export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterViewChecked {
   hotelName = 'Hilton Hotel';
 
   numberOfRooms = 10;
@@ -21,7 +22,16 @@ export class RoomsComponent implements OnInit, DoCheck {
 
   roomList: RoomList[] = [];
 
+  @ViewChild(HeaderComponent) headerComponent!: HeaderComponent;
+
   constructor() {}
+  ngAfterViewChecked(): void {
+    throw new Error('Method not implemented.');
+  }
+
+  ngAfterViewInit(): void {
+    this.headerComponent.title="Roooms View";
+  }
 
   ngDoCheck(): void {
     console.log('on Chages is called')
@@ -32,6 +42,7 @@ export class RoomsComponent implements OnInit, DoCheck {
   title ="Room List";
 
   ngOnInit(): void {
+
     this.roomList = [
       {
         roomNumber: 1,

@@ -1,7 +1,7 @@
 <h1>Hello World!</h1>
 <p>Hey</p>
 
-<div [ngSwitch]="role">
+<!-- <div [ngSwitch]="role">
   <div *ngSwitchCase="'User'">Welcome User</div>
   <div *ngSwitchCase="'Admin'">
     <hinv-rooms></hinv-rooms>
@@ -9,4 +9,10 @@
   <div *ngSwitchDefault>
     <p>You are not authorized to view this page</p>
   </div>
+</div> -->
+
+<!-- Render the rooms Component Dynamically -->
+<!-- Here we will dynamically load  rooms component using view child-->
+<div>
+  <ng-template #user></ng-template>
 </div>
