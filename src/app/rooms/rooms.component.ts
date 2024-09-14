@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { Room, RoomList } from './rooms';
 
 @Component({
@@ -23,8 +23,12 @@ export class RoomsComponent implements OnInit {
 
   constructor() {}
 
+  selectedRoom!: RoomList;
+
+  title ="Room List";
+
   ngOnInit(): void {
-    this.roomList =[
+    this.roomList = [
       {
         roomNumber: 1,
         roomType: 'Deluxe Room',
@@ -33,8 +37,9 @@ export class RoomsComponent implements OnInit {
         photos: 'www.image.com',
         checkInTime: new Date('11-Nov-2022'),
         checkOutTime: new Date('12-Nov-2022'),
-        rating: 2.42132
-      },{
+        rating: 2.42132,
+      },
+      {
         roomNumber: 2,
         roomType: 'Economy Room',
         amenities: 'A/C, Wi-Fi, Tv',
@@ -42,8 +47,9 @@ export class RoomsComponent implements OnInit {
         photos: 'www.image2.com',
         checkInTime: new Date('11-Nov-2022'),
         checkOutTime: new Date('12-Nov-2022'),
-        rating: 3.888888
-      },{
+        rating: 3.888888,
+      },
+      {
         roomNumber: 3,
         roomType: 'PentHouse',
         amenities: 'A/C, Wi-Fi, Tv',
@@ -51,16 +57,33 @@ export class RoomsComponent implements OnInit {
         photos: 'www.image.com',
         checkInTime: new Date('11-Nov-2022'),
         checkOutTime: new Date('12-Nov-2022'),
-        rating: 2.4231231
+        rating: 2.4231231,
       },
-    ]
+    ];
   }
 
   toggle() {
     this.hideRooms = !this.hideRooms;
+    this.title = "Rooms-List";
   }
 
-  selectRoom(room: RoomList){
-    console.log(room);
+  selectRoom(room: RoomList) {
+    this.selectedRoom = room;
   }
+
+  addRoom() {
+    const room: RoomList = {
+      roomNumber: 4,
+      roomType: 'add room',
+      amenities: 'A/C, Wi-Fi, Tv',
+      price: 1500,
+      photos: 'www.image.com',
+      checkInTime: new Date('11-Nov-2022'),
+      checkOutTime: new Date('12-Nov-2022'),
+      rating: 2.4231231,
+    };
+
+    this.roomList = [...this.roomList, room];
+  }
+
 }
