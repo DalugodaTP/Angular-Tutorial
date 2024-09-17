@@ -1,11 +1,13 @@
 import { Component,DoCheck,OnInit, ViewChild,AfterViewInit, AfterViewChecked } from '@angular/core';
 import { Room, RoomList } from './rooms';
 import { HeaderComponent } from '../header/header.component';
+import { RoomsService } from './services/rooms.service';
 
 @Component({
   selector: 'hinv-rooms',
   templateUrl: './rooms.component.html',
   styleUrls: ['./rooms.component.scss'],
+  providers:[RoomsService]
 })
 export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterViewChecked {
   hotelName = 'Hilton Hotel';
@@ -24,7 +26,9 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
 
   @ViewChild(HeaderComponent) headerComponent!: HeaderComponent;
 
-  constructor() {}
+  constructor(private roomService: RoomsService) {
+    this.roomList = roomService.getRooms();
+  }
   ngAfterViewChecked(): void {
     throw new Error('Method not implemented.');
   }
@@ -42,39 +46,6 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
   title ="Room List";
 
   ngOnInit(): void {
-
-    this.roomList = [
-      {
-        roomNumber: 1,
-        roomType: 'Deluxe Room',
-        amenities: 'A/C, Wi-Fi, Tv',
-        price: 500,
-        photos: 'www.image.com',
-        checkInTime: new Date('11-Nov-2022'),
-        checkOutTime: new Date('12-Nov-2022'),
-        rating: 2.42132,
-      },
-      {
-        roomNumber: 2,
-        roomType: 'Economy Room',
-        amenities: 'A/C, Wi-Fi, Tv',
-        price: 1000,
-        photos: 'www.image2.com',
-        checkInTime: new Date('11-Nov-2022'),
-        checkOutTime: new Date('12-Nov-2022'),
-        rating: 3.888888,
-      },
-      {
-        roomNumber: 3,
-        roomType: 'PentHouse',
-        amenities: 'A/C, Wi-Fi, Tv',
-        price: 1500,
-        photos: 'www.image.com',
-        checkInTime: new Date('11-Nov-2022'),
-        checkOutTime: new Date('12-Nov-2022'),
-        rating: 2.4231231,
-      },
-    ];
   }
 
   toggle() {
